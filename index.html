@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="Maximum Likelihood Reinforcement Learning - A framework that bridges RL and maximum likelihood for correctness-based tasks">
-  <meta name="keywords" content="LLM, Reasoning, Reinforcement Learning, Maximum Likelihood, Policy Gradient">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MaxRL: Maximum Likelihood Reinforcement Learning</title>
+      content="Message Passing Language Models (MPLMs): decentralized, efficient LLM reasoning with spawn/send/recv/stop directives and provable context savings.">
+  <meta name="keywords"
+        content="LLM, reasoning, message passing, MPLM, decentralized inference, fork-join, chain-of-thought, sudoku, structured reasoning">
+  <title>MPLM: Message Passing Language Models</title>
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro|JetBrains+Mono"
         rel="stylesheet">
@@ -262,47 +262,64 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Maximum Likelihood Reinforcement Learning</h1>
-          
-          <!-- Authors Section -->
-          <div class="is-size-5 publication-authors">
-            <span class="author-block"><a href="https://tajwarfahim.github.io/">Fahim Tajwar</a><sup>*,1</sup>,</span>
-            <span class="author-block"><a href="https://scholar.google.com/citations?user=SU6ooAQAAAAJ">Guanning Zeng</a><sup>*,2</sup>,</span>
-            <span class="author-block"><a href="https://zhouyueer7.github.io/">Yueer Zhou</a><sup>3</sup>,</span>
-            <span class="author-block"><a href="https://yudasong.github.io/">Yuda Song</a><sup>1</sup>,</span><br>
-            <span class="author-block"><a href="https://daman1209arora.github.io/">Daman Arora</a><sup>1</sup>,</span>
-            <span class="author-block"><a href="https://yidingjiang.github.io/">Yiding Jiang</a><sup>1</sup>,</span>
-            <span class="author-block"><a href="https://www.cs.cmu.edu/~schneide/">Jeff Schneider</a><sup>1</sup>,</span>
-            <span class="author-block"><a href="https://www.cs.cmu.edu/~rsalakhu/">Ruslan Salakhutdinov</a><sup>1</sup>,</span><br>
-            <span class="author-block"><a href="https://havenfeng.github.io/">Haiwen Feng</a><sup>4,5</sup>,</span>
-            <span class="author-block"><a href="https://azanette.com">Andrea Zanette</a><sup>1</sup></span>
-          </div>
-          <div class="is-size-6 publication-authors" style="margin-top: 1rem;">
-            <span class="author-block"><sup>1</sup>Carnegie Mellon University</span>
-            <span class="author-block" style="margin-left: 1em;"><sup>2</sup>Tsinghua University</span>
-            <span class="author-block" style="margin-left: 1em;"><sup>3</sup>Zhejiang University</span><br>
-            <span class="author-block"><sup>4</sup>UC Berkeley</span>
-            <span class="author-block" style="margin-left: 1em;"><sup>5</sup>Impossible, Inc.</span>
-            <span class="author-block" style="margin-left: 1em;"><sup>*</sup>Equal Contribution</span>
-          </div>
+          <h1 class="title is-1 publication-title">Message Passing Language Models</h1>
 
-          <div class="column has-text-centered" style="margin-top: 1.5rem;">
-            <div class="publication-links">
-              <span class="link-block">
-                <a href="#" class="external-link button is-normal is-rounded">
-                  <span class="icon"><i class="ai ai-arxiv"></i></span>
-                  <span>arXiv</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href="#" class="external-link button is-normal is-rounded">
-                  <span class="icon"><i class="fab fa-github"></i></span>
-                  <span>Code</span>
-                </a>
+            <div class="is-size-5 publication-authors">
+              <!-- Replace with your actual author list -->
+              <span class="author-block"><a href="https://daman1209arora.github.io">Daman Arora</a><sup>*</sup>,</span>
+              <span class="author-block"><a href="">Xuecheng Liu</a><sup>*</sup>,</span>
+              <span class="author-block"><a href="https://gokul.dev">Gokul Swamy</a><sup></sup>,</span>
+              <span class="author-block"><a href="https://azanette.com">Andrea Zanette</a><sup></sup></span>
+            </div>
+
+            <div class="is-size-6 publication-authors" style="margin-top: 1rem;">
+              <span class="author-block"><sup></sup>Carnegie Mellon University</span>
+            </div>
+
+            <div class="column has-text-centered" style="margin-top: 0.1rem;">
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="ARXIV_LINK" class="external-link button is-normal is-rounded">
+                    <span class="icon"><i class="ai ai-arxiv"></i></span><span>arXiv</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="PDF_LINK" class="external-link button is-normal is-rounded">
+                    <span class="icon"><i class="fas fa-file-pdf"></i></span><span>PDF</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="GITHUB_LINK" class="external-link button is-normal is-rounded">
+                    <span class="icon"><i class="fab fa-github"></i></span><span>Code</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+
+            <div class="is-size-6 publication-authors" style="margin-top: 0.01rem;">
+              <span class="author-block">
+                <strong>TL;DR</strong> We propose a framework for language models to pass messages, allowing them to reason more efficiently.
               </span>
             </div>
-          </div>
+            
+
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-gray">
+  <div class="container is-max-desktop">
+    <div class="content has-text-justified">
+
+      <div class="figure-container">
+        <center>
+          <img src="./static/images/token_scaling_with_slopes.jpg" alt="Token scaling plots" style="max-width: 100%;">
+        </center>
+        <p class="figure-caption" style="max-width: 64%; margin: 0 auto;">
+          <strong>Scaling results on Sudoku puzzles.</strong> MPLMs achieve better scaling exponents compared to standard LLM decoding methods, enabling efficient reasoning on larger puzzles.
+        </p>
       </div>
     </div>
   </div>
@@ -313,32 +330,48 @@
   <div class="container is-max-desktop">
     <div class="content has-text-justified">
       
-      <h2 class="title is-3 section-title">Maximum Likelihood vs. Reinforcement Learning</h2>
+      <h2 class="title is-3 section-title">Introduction</h2>
       
       <p>
-        <strong>Maximum likelihood</strong> training is the foundational optimization principle behind modern machine learning. 
-        In fully differentiable settings, optimizing log-likelihood objectives—most commonly via cross-entropy—has reliably 
-        translated increases in model capacity, data, and compute into consistent performance improvements.
+        For reasoning, generating long Chains-of-Thoughts (CoTs) is a computational bottleneck. Parallelism using fork and join (FJ) primitives to divide work across multiple <em>LLM threads</em> necessitates a centralized controller which increases communication costs and limits scalability. 
+        In response, we introduce <strong>Message Passing Language Models</strong> (MPLMs): a novel, general-purpose framework where LLM threads can <em>spawn</em> other threads that can communicate with each other using <em>send</em> and <em>recv</em> primitives. 
       </p>
       
-      <p>
-        <strong>Reinforcement learning</strong>, by contrast, originated in optimal control and sequential decision-making 
-        where the end-to-end process is non-differentiable. The learning process is framed as interaction with an environment 
-        and the goal is to maximize expected return.
-      </p>
-      
-      <p>
-        Many modern learning problems—navigation, program synthesis, structured prediction, and <em>multi-step reasoning in LLMs</em>—are 
-        non-differentiable but admit a <strong>binary notion of correctness</strong>. They involve generating sequences of stochastic decisions, 
-        with success determined at the end by an external verifier. Because this generation process is non-differentiable end-to-end, 
-        reinforcement learning is typically used to maximize expected reward.
-      </p>
-      
-      <div class="insight-box">
-        <p style="margin: 0;">
-          <strong>But is maximizing expected correctness the right optimization target?</strong>
+      <div class="figure-container">
+        <center>
+          <img src="./static/images/main_figure.jpg" alt="MPLM Main Figure" style="max-width: 60%;">
+        </center>
+        <p class="figure-caption" style="max-width: 52%; margin: 0 auto;">
+          In <strong>Message Passing Language Models (MPLMs)</strong>, concurrently decoded threads communicate directly through explicit <em>send</em> and <em>recv</em> primitives and maintain a persistent context, enabling fine-grained coordination and information sharing throughout inference making them more efficient than the serial CoT and parallel Fork-Join paradigms.
         </p>
       </div>
+
+
+      <!-- <div class="columns is-vcentered is-variable is-6">
+  
+        Left figure
+        <div class="column is-6 has-text-centered">
+          <img src="./static/images/main_figure.jpg"
+               alt="MPLM Main Figure"
+               style="max-width: 100%;">
+          <p class="figure-caption" style="margin: 0.75rem auto 0;">
+            In <strong>Message Passing Language Models (MPLMs)</strong>, concurrently decoded threads communicate directly through explicit
+            <em>send</em> and <em>recv</em> primitives and maintain a persistent context.
+          </p>
+        </div>
+      
+        Right figure
+        <div class="column is-6 has-text-centered">
+          <img src="./static/images/token_scaling_with_slopes.jpg"
+               alt="Token scaling plots"
+               style="max-width: 100%;">
+          <p class="figure-caption" style="margin: 0.75rem auto 0;">
+            <strong>Scaling results on Sudoku puzzles.</strong> MPLMs achieve better scaling exponents compared to standard decoding methods.
+          </p>
+        </div>
+      
+      </div> -->
+      
 
     </div>
   </div>
@@ -349,372 +382,99 @@
   <div class="container is-max-desktop">
     <div class="content has-text-justified">
       
-      <h2 class="title is-3 section-title">Correctness as Likelihood</h2>
-      
-      <p>
-        For these correctness-based tasks, a <em>probabilistic modeling</em> lens exposes a viewpoint that is absent in the standard RL formulation. 
-        For each input, the model induces a distribution over stochastic outputs, together with a binary random variable indicating correctness. 
-        The resulting probability of success is a function of the model parameters and therefore defines a <strong>likelihood over correct outcomes</strong>—even 
-        if intermediate computations are non-differentiable.
-      </p>
-      
-      <p>
-        These two perspectives induce <strong>different optimization objectives</strong>. Let $p_\theta(x)$ denote the probability that 
-        a model with parameters $\theta$ produces a correct output for input $x$:
-      </p>
-      
-      <div class="math-comparison">
-        <div class="math-box rl">
-          <h4>🎮 Control Formulation (RL)</h4>
-          <p style="text-align: center; font-size: 1.1rem;">
-            $\nabla_\theta J_{\mathrm{RL}} = \mathbb{E}_x\left[\nabla_\theta p_\theta(x)\right]$
-          </p>
-          <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 1rem;">
-            Maximize expected correctness. Each input contributes in proportion to how changes affect its success probability.
-            <br><br>
-            <strong>→ Optimization dominated by easy examples</strong>
-          </p>
-        </div>
-        <div class="math-box ml">
-          <h4>📊 Modeling Formulation (ML)</h4>
-          <p style="text-align: center; font-size: 1.1rem;">
-            $\nabla_\theta J_{\mathrm{ML}} = \mathbb{E}_x\left[\frac{1}{p_\theta(x)} \nabla_\theta p_\theta(x)\right]$
-          </p>
-          <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 1rem;">
-            Maximize likelihood of correct outcomes. Gradient reweighted by inverse success probability.
-            <br><br>
-            <strong>→ Concentrated effort on hard, uncertain inputs</strong>
-          </p>
-        </div>
+      <h2 class="title is-3 section-title">Scaling Results</h2>
+    
+
+
+
+      <div class="figure-container">
+        <center>
+          <img src="./static/images/mplm_results_table.png" alt="Token scaling plots" style="max-width: 70%;">
+        </center>
+        <p class="figure-caption" style="max-width: 64%; margin: 0 auto;">
+          Average <strong>latency and accuracy</strong> across Sudoku sizes. Red cross (❌) denotes infeasible training due to context or compute constraints and a green tick
+          (✅) denotes the best scalable model. MPLM remains feasible and accurate at larger grid sizes, while FJ, Serial baselines, and frontier models fail to scale.
+        </p>
       </div>
-      
+
+
+
       <p>
-        Historically, this distinction was inconsequential in classical RL settings where agents interacted with a single environment. 
-        <strong>Modern applications</strong> operate in a fundamentally different regime: models are trained and evaluated across 
-        large, heterogeneous input distributions, where <em>generalization</em> and <em>coverage</em> are central concerns. 
-        In this regime, objectives that differ in how they allocate learning signal can induce markedly different behavior.
+        As a proof of concept, we consider Sudoku puzzles since they are deterministic, naturally parallelizable, exhibits a complex communication structure, and allows scaling complexity incrementally.
+        we theoretically and empirically show better scaling with MPLMs on Sudoku puzzles, scaling to upto 25×25 Sudoku puzzles which are challenging even for GPT-5 Pro. 
+   
       </p>
-      
-      <p>
-        This raises a natural question: <em>what objective function should reinforcement learning maximize in correctness-based tasks?</em>
-      </p>
+
 
     </div>
   </div>
 </section>
 
-<!-- ==================== MAXRL METHOD ==================== -->
 <section class="section section-white">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 section-title">Maximum Likelihood Reinforcement Learning (MaxRL)</h2>
+    <h2 class="title is-3 section-title">Recipe</h2>
     
     <div class="content has-text-justified">
-      
+
+      <h3>Execution Control Directives</h3>
       <p>
-        Maximum likelihood emerges as a principled objective, but it is statistically challenging to estimate when the success probability 
-        $p_\theta(x)$ is small. We show that this challenge admits a principled resolution that <strong>scales with compute</strong>.
+        MPLMs use a small set of <em>directives</em>—explicit instructions generated by the model—to control execution.
+        These play roles analogous to process creation, communication, synchronization, and termination in
+        message-passing systems.
       </p>
-      
-      <!-- Subsection: Maclaurin Expansion -->
-      <h4 class="subsection-title">Maclaurin Expansion of Maximum Likelihood</h4>
-      
-      <p>
-        Standard reinforcement learning optimizes the expected pass@1:
-      </p>
-      
-      <div class="formula-box">
-        <p style="font-size: 1.1rem; margin: 0;">
-          $\nabla_\theta J_{\mathrm{RL}}(x) = \nabla_\theta \mathrm{pass@}1(x)$
-        </p>
-      </div>
-      
-      <p>
-        What about maximum likelihood? The log-likelihood admits a <strong>Maclaurin (failure-series) expansion</strong>:
-      </p>
-      
-      <div class="formula-box">
-        <p style="font-size: 1.1rem; margin: 0;">
-          $\log p = -\sum_{k=1}^{\infty}\frac{(1-p)^k}{k} = -\sum_{k=1}^{\infty}\frac{\mathrm{fail@}k}{k}$
-        </p>
-      </div>
-      
-      <p>
-        Differentiating yields the population-level gradient identity:
-      </p>
-      
-      <div class="formula-box">
-        <p style="font-size: 1.2rem; margin: 0; font-weight: 500;">
-          $\nabla_\theta J_{\mathrm{ML}}(x) = \sum_{k=1}^{\infty}\frac{1}{k}\,\nabla_\theta \mathrm{pass@}k(x)$
-        </p>
-      </div>
-      
-      <p>
-        This is a key identity: <strong>maximum likelihood optimizes an infinite harmonic mixture of pass@k gradients</strong>. 
-        Higher-order terms encode learning signal from increasingly rare success patterns, which become essential when the model's pass rate is small.
-      </p>
-      
-      <p>
-        Comparing the two objectives, the RL gradient corresponds to retaining solely the <strong>first-order term</strong>. From this perspective, 
-        <em>reinforcement learning is a first-order approximation of maximum likelihood in correctness space</em>.
-      </p>
-      
-      <!-- Subsection: Truncated Objectives -->
-      <h4 class="subsection-title">Truncated Objectives</h4>
-      
-      <p>
-        Optimizing the full infinite mixture is infeasible under finite compute. We define the <strong>truncated maximum likelihood objective</strong> 
-        at level $T$:
-      </p>
-      
-      <div class="formula-box">
-        <p style="font-size: 1.1rem; margin: 0;">
-          $\nabla_\theta J_{\mathrm{MaxRL}}^{(T)}(x) = \sum_{k=1}^{T}\frac{1}{k}\,\nabla_\theta \mathrm{pass@}k(x)$
-        </p>
-      </div>
-      
-      <!-- Number line / Spectrum visualization (SVG) -->
-      <div style="margin: 2rem 0; text-align: center;">
-        <svg viewBox="0 0 600 100" style="max-width: 70%; height: auto;">
-          <!-- Main axis line -->
-          <line x1="50" y1="50" x2="550" y2="50" stroke="#e5e7eb" stroke-width="3" stroke-linecap="round"/>
-          
-          <!-- Arrow at end -->
-          <polygon points="545,45 555,50 545,55" fill="#e5e7eb"/>
-          
-          <!-- RL point (T=1) -->
-          <circle cx="80" cy="50" r="8" fill="#dc2626"/>
-          <text x="80" y="30" text-anchor="middle" font-size="13" font-weight="600" fill="#dc2626">Standard RL</text>
-          <text x="80" y="75" text-anchor="middle" font-size="12" fill="#6b7280" font-style="italic">T = 1</text>
-          
-          <!-- MaxRL point (T=N) -->
-          <circle cx="300" cy="50" r="10" fill="#1e40af" stroke="#fff" stroke-width="2"/>
-          <text x="300" y="28" text-anchor="middle" font-size="14" font-weight="700" fill="#1e40af">MaxRL</text>
-          <text x="300" y="78" text-anchor="middle" font-size="12" fill="#6b7280" font-style="italic">T = N</text>
-          
-          <!-- ML point (T→∞) -->
-          <circle cx="520" cy="50" r="8" fill="#16a34a"/>
-          <text x="520" y="30" text-anchor="middle" font-size="13" font-weight="600" fill="#16a34a">Max. Likelihood</text>
-          <text x="520" y="75" text-anchor="middle" font-size="12" fill="#6b7280" font-style="italic">T → ∞</text>
-          
-          <!-- Gradient arc connecting RL to ML (decorative) -->
-          <path d="M 95 50 Q 300 20 505 50" stroke="url(#gradientArc)" stroke-width="2" fill="none" stroke-dasharray="4,4" opacity="0.5"/>
-          
-          <defs>
-            <linearGradient id="gradientArc" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#dc2626"/>
-              <stop offset="50%" stop-color="#1e40af"/>
-              <stop offset="100%" stop-color="#16a34a"/>
-            </linearGradient>
-          </defs>
-        </svg>
-      </div>
-      
-      <p>
-        This defines a <strong>compute-indexed hierarchy</strong>: increasing $T$ provides progressively better approximations to maximum likelihood. 
-        In practice, we set $T = N$ where $N$ is the number of rollouts per prompt.
-      </p>
-      
-      <!-- Subsection: Empirical Gradient Estimator -->
-      <h4 class="subsection-title">Empirical Gradient Estimator</h4>
-      
-      <p>
-        The maximum likelihood gradient admits a simple <strong>conditional expectation representation</strong>:
-      </p>
-      
-      <div class="formula-box">
-        <p style="font-size: 1.1rem; margin: 0;">
-          $\nabla_\theta J_{\mathrm{ML}}(x) = \mathbb{E}\left[\nabla_\theta \log \pi_\theta(z \mid x) \;\middle|\; \text{success}\right]$
-        </p>
-      </div>
-      
-      <p>
-        This leads to a remarkably simple estimator. Given $N$ rollouts with $K$ successes, the <strong>conditional estimator</strong> averages 
-        score functions over successful trajectories only:
-      </p>
-      
-      <div class="algorithm-box">
-        <span class="keyword">for</span> each prompt $x$ <span class="keyword">in</span> batch:<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;Sample $N$ rollouts from $\pi_\theta(\cdot|x)$<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;$K$ ← number of successful rollouts<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;$\hat{\mu}$ ← $K / N$ &nbsp;&nbsp;<span class="comment"># empirical pass rate</span><br><br>
-        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span> $K > 0$:<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$A(y) = \frac{r(y) - \hat{\mu}}{\hat{\mu}}$ &nbsp;&nbsp;<span class="comment"># MaxRL advantage</span><br>
-        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">else</span>:<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$A(y) = 0$<br><br>
-        <span class="function">PolicyGradientUpdate</span>(advantages)
-      </div>
-      
-      <p style="margin-top: 1.5rem;">
-        The key difference from REINFORCE is simple: <strong>normalize by $K$ (successful samples) instead of $N$ (total samples)</strong>.
-      </p>
-      
-      <p>
-        This estimator is unbiased for the truncated objective $J_{\mathrm{MaxRL}}^{(N)}$. 
-        A key distinction emerges: in REINFORCE, increasing the number of samples $N$ only reduces variance while optimizing a fixed pass@1 objective. 
-        In MaxRL, increasing $N$ improves the <em>objective itself</em>, progressively approaching maximum likelihood.
-      </p>
-      
-      <!-- Subsection: Weight Function View -->
-      <h4 class="subsection-title">A Unifying Weight-Function View</h4>
-      
-      <p>
-        All objectives can be unified through a weighting function $w(p)$ that determines how learning signal is allocated:
-      </p>
-      
-      <div class="figure-container">
-        <center>
-          <img src="./static/images/weight_functions.png" alt="Weight functions comparison" style="max-width: 50%;">
-        </center>
-        <p class="figure-caption">
-          <strong>Population-level weighting functions.</strong> As $T$ increases, MaxRL approaches ML weighting, 
-          emphasizing hard inputs while remaining bounded at moderate pass rates.
-        </p>
-      </div>
-      
-      <center>
-      <table class="comparison-table" style="max-width: 70%;">
+
+      <table class="directives-table">
         <thead>
           <tr>
-            <th style="color: #fff;">Method</th>
-            <th style="color: #fff;">Weight Function $w(p)$</th>
-            <th style="color: #fff;">Behavior on Hard Inputs</th>
+            <th style="text-align: center;">Directive</th>
+            <th style="text-align: center;">Description</th>
+            <th style="text-align: center;">Syntax</th>
           </tr>
         </thead>
         <tbody>
-          <tr><td><strong>REINFORCE</strong></td><td>$1$</td><td>No reweighting</td></tr>
-          <tr><td><strong>GRPO</strong></td><td>$\frac{1}{\sqrt{p(1-p)}}$</td><td>Moderate upweighting</td></tr>
-          <tr><td><strong>Maximum Likelihood</strong></td><td>$\frac{1}{p}$</td><td>Full inverse weighting</td></tr>
-          <tr><td><strong>MaxRL (Ours)</strong></td><td>$\frac{1-(1-p)^T}{p}$</td><td>Compute-controlled</td></tr>
+          <tr>
+            <td style="text-align: center;"><strong>Spawn</strong></td>
+            <td style="text-align: center;">
+              Creates new LLM threads with the given IDs and the prompt.<br>
+            </td>
+            <td style="text-align: center;">
+              <code>&lt;spawn[id1,id2,…,idN]&gt;prompt&lt;/spawn&gt;</code>
+            </td>
+          </tr>
+          <tr>
+            <td style="text-align: center;"><strong>Send</strong></td>
+            <td style="text-align: center;">
+              Sends a message to one or more specified LLM threads.<br>
+            </td>
+            <td style="text-align: center;">
+              <code>&lt;send[id1,id2,…,idN]&gt;message&lt;/send&gt;</code>
+            </td>
+          </tr>
+          <tr>
+            <td style="text-align: center;"><strong>Receive</strong></td>
+            <td style="text-align: center;">
+              Blocks execution until messages are received from the specified threads.<br>
+            </td>
+            <td style="text-align: center;">
+              <code>&lt;recv[id1,id2,…,idN]&gt;</code>
+            </td>
+          </tr>
+          <tr>
+            <td style="text-align: center;"><strong>Stop</strong></td>
+            <td style="text-align: center;">
+              Terminates execution of the current LLM thread permanently.<br>
+            </td>
+            <td style="text-align: center;">
+              <code>&lt;stop&gt;</code>
+            </td>
+          </tr>
         </tbody>
       </table>
-      </center>
       
-    </div>
-  </div>
-</section>
+      <p>
+        We generate CoT data for different strategies using a simple program and use Supervised Fine Tuning (SFT) on Qwen3-0.6B-Base. 
+        Implementing message passing requires to implement a <em>controller</em> on top of the inference engine. 
 
-<!-- ==================== EXPERIMENTS ==================== -->
-<section class="section section-gray">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3 section-title">Experiments</h2>
-    
-    <div class="content has-text-justified" style="margin-bottom: 2rem;">
-      <p>
-        We first show that MaxRL closely approximates exact maximum likelihood where it is computable on a toy image classification task, 
-        and then demonstrate consistent improvements across maze navigation, GSM8K math reasoning, 
-        and finally on large-scale Qwen3 training and challenging math reasoning problems.
-      </p>
-    </div>
-    
-    <div class="result-card">
-      <h4>ImageNet: Comparison with Exact Likelihood</h4>
-      <p>
-        We first validate MaxRL where exact maximum likelihood (cross-entropy) is computable. 
-        Image classification provides a clean testbed: reward is 1 if predicted class matches ground truth, 0 otherwise.
-      </p>
-      <div class="figure-container">
-        <center><img src="./static/images/imagenet_new_main_paper_figure_1.png" alt="ImageNet results" style="max-width: 80%;"></center>
-        <p class="figure-caption">
-          <strong>ImageNet training dynamics.</strong> With sufficient rollouts, MaxRL closely matches cross-entropy training, 
-          while REINFORCE fails to make progress from low initial pass rates.
-        </p>
-      </div>
-    </div>
-    
-    <div class="result-card">
-      <h4>Maze Navigation: Infinite Data Regime</h4>
-      <p>
-        We study training with continually fresh data using procedurally generated mazes. 
-        Each training input is newly generated, and the model never encounters the same maze twice.
-      </p>
-      <div class="figure-container">
-        <center><img src="./static/images/maze_scaling_with_number_of_rollouts.png" alt="Maze scaling results" style="max-width: 100%;"></center>
-        <p class="figure-caption">
-          <strong>Scaling behavior with increasing rollouts per prompt.</strong> MaxRL consistently outperforms GRPO, which outperforms RLOO.
-        </p>
-      </div>
-      <center>
-        <img src="./static/images/maze-example-dual.png" alt="Maze visualization" style="max-width: 50%; margin-top: 1rem;">
-        <p class="figure-caption" style="margin-top: 0.5rem;">Example maze: successful navigation (left) vs. failure case (right).</p>
-      </center>
-    </div>
-    
-    <div class="result-card">
-      <h4>GSM8K: Data-Scarce Regime</h4>
-      <p>
-        In the data-scarce regime, models train for many epochs over a fixed dataset. 
-        This exposes differences in how objectives allocate learning signal under repeated training.
-      </p>
-      <div class="figure-container">
-        <center><img src="./static/images/smollm_training_step.png" alt="GSM8K training dynamics" style="max-width: 100%;"></center>
-        <p class="figure-caption">
-          <strong>Training dynamics on GSM8K.</strong> MaxRL shows slower initial gains but sustained improvement, 
-          with substantially less pass@k degradation.
-        </p>
-      </div>
-    </div>
-    
-    <div class="result-card">
-      <h4>Large-Scale LLM Training</h4>
-      <p>
-        We train <strong>Qwen3-1.7B-Base</strong> and <strong>Qwen3-4B-Base</strong> models on POLARIS-53K (~50K math reasoning prompts), 
-        and evaluate on AIME 2025, BeyondAIME, MATH-500, and Minerva.
-      </p>
-      <div class="figure-container">
-        <center><img src="./static/images/large_scale_experiments_summary.png" alt="Large scale LLM results" style="max-width: 100%;"></center>
-        <p class="figure-caption">
-          <strong>Evaluation on math benchmarks.</strong> MaxRL consistently Pareto dominates GRPO: 
-          higher pass@1 <em>and</em> improved pass@k. Improved coverage means achieving the same pass@k 
-          requires <strong>2.3× – 19.2×</strong> fewer samples than GRPO.
-        </p>
-      </div>
-    </div>
-    
-    <div class="result-card">
-      <h4>Analysis</h4>
-      <p>
-        We analyze MaxRL's behavior by examining gradient norms and training coverage across different methods.
-      </p>
-      <div class="figure-container">
-        <center><img src="./static/images/qwen_p_vs_grad_norm_plot.png" alt="Gradient analysis" style="max-width: 100%;"></center>
-        <p class="figure-caption">
-          <strong>Gradient norm vs pass rate.</strong> MaxRL generates larger gradient norms on difficult prompts (low pass rate), 
-          consistent with its inverse-probability weighting.
-        </p>
-      </div>
-      <div class="figure-container">
-        <center><img src="./static/images/fraction_solved_problems_during_training.png" alt="Training coverage" style="max-width: 85%;"></center>
-        <p class="figure-caption">
-          <strong>Training coverage.</strong> Fraction of prompts with at least one correct rollout during training. 
-          MaxRL maintains higher coverage throughout training.
-        </p>
-      </div>
-    </div>
-    
-  </div>
-</section>
-
-<!-- ==================== CONCLUSION ==================== -->
-<section class="section section-white">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3 section-title">Conclusion</h2>
-    
-    <div class="conclusion-box content has-text-justified">
-      <p>
-        We introduce <strong>Maximum Likelihood Reinforcement Learning (MaxRL)</strong>, a framework that bridges 
-        the gap between reinforcement learning and maximum likelihood for correctness-based tasks. Through a Maclaurin expansion 
-        of the log-likelihood, we show that standard RL optimizes only the first-order term (pass@1), while maximum likelihood 
-        corresponds to an infinite harmonic mixture of pass@k objectives.
-      </p>
-      <p>
-        MaxRL provides a practical middle ground: by truncating the expansion at level $T = N$ (the number of rollouts), 
-        we obtain a compute-indexed family of objectives that progressively approaches maximum likelihood as compute increases. 
-        The resulting gradient estimator is remarkably simple—normalizing by the number of successes rather than total samples—yet 
-        yields consistent improvements across diverse domains.
-      </p>
-      <p>
-        Empirically, MaxRL demonstrates superior performance in image classification, maze navigation, math reasoning, and 
-        large-scale LLM training. Compared with GRPO, MaxRL achieves <strong>higher pass@k while improving pass@1</strong>, requiring <strong>2.3x-19.2x</strong> fewer samples at deployment time to achieve the same pass@k coverage.
       </p>
     </div>
     
@@ -747,7 +507,7 @@
     </div>
     <div class="columns is-centered">
       <p>
-        Corresponding Authors: <a href="mailto:ftajwar@andrew.cmu.edu">Fahim Tajwar</a>, <a href="mailto:azanette@andrew.cmu.edu">Andrea Zanette</a><br>
+        Corresponding Authors: <a href="mailto:damana@andrew.cmu.edu">Daman Arora</a>, <a href="mailto:azanette@andrew.cmu.edu">Andrea Zanette</a><br>
         Template adapted from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
       </p>
     </div>
