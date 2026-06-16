@@ -5,7 +5,7 @@
   <meta name="description"
       content="Message Passing Language Models (MPLMs): decentralized, efficient LLM reasoning with spawn/send/recv/stop directives and provable context savings.">
   <meta name="keywords"
-        content="LLM, reasoning, message passing, MPLM, decentralized inference, fork-join, chain-of-thought, sudoku, structured reasoning">
+        content="LLM, reasoning, message passing, MPLM, decentralized inference, fork-join, chain-of-thought, sudoku, SAT, long-context, structured reasoning">
   <title>MPLM: Message Passing Language Models</title>
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro|JetBrains+Mono"
@@ -41,14 +41,14 @@
       --bg-gray: #f9fafb;
       --border-light: #e5e7eb;
     }
-    
+
     body { color: var(--text-dark); }
-    
+
     .hero { background: #fff; border-bottom: 1px solid #e5e7eb; }
     .hero .title.is-1 { color: #1f2937; font-weight: 700; }
     .hero .publication-authors a:hover { color: #3b82f6 !important; text-decoration: underline; }
     .hero .publication-authors span { color: #4b5563; }
-    
+
     .publication-links .button {
       margin: 0.25rem;
       background: transparent;
@@ -70,16 +70,16 @@
       font-weight: 700;
       margin-bottom: 1.5rem;
     }
-    
+
     h4.subsection-title {
       font-size: 1.25rem;
       margin-top: 2rem;
       margin-bottom: 1rem;
     }
-    
+
     .section-white { background: var(--bg-white); }
     .section-gray { background: var(--bg-gray); }
-    
+
     .insight-box {
       background: #fff;
       border: 1px solid var(--border-light);
@@ -88,7 +88,7 @@
       border-radius: 4px;
       margin: 1.5rem 0;
     }
-    
+
     .math-comparison {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -96,7 +96,7 @@
       margin: 2rem 0;
     }
     @media (max-width: 768px) { .math-comparison { grid-template-columns: 1fr; } }
-    
+
     .math-box {
       background: #fff;
       border-radius: 6px;
@@ -106,7 +106,7 @@
     .math-box.rl { border-top: 3px solid #dc2626; }
     .math-box.ml { border-top: 3px solid var(--primary); }
     .math-box h4 { font-weight: 600; margin-bottom: 1rem; color: var(--text-dark); }
-    
+
     .figure-container {
       background: transparent;
       border-radius: 0;
@@ -116,7 +116,7 @@
     }
     .figure-container img { border-radius: 4px; }
     .figure-caption { font-size: 0.9rem; color: var(--text-muted); margin-top: 1rem; text-align: center; }
-    
+
     /* Equal height for analysis figures */
     .analysis-columns {
       display: flex;
@@ -147,7 +147,7 @@
     @media (max-width: 768px) {
       .analysis-columns { flex-direction: column; }
     }
-    
+
     .result-card {
       background: #fff;
       border-radius: 8px;
@@ -156,7 +156,7 @@
       border: 1px solid var(--border-light);
     }
     .result-card h4 { color: var(--text-dark); font-weight: 600; margin-bottom: 1rem; }
-    
+
     .highlight-stat {
       background: var(--primary);
       color: #fff;
@@ -165,7 +165,7 @@
       font-weight: 600;
       font-size: 0.9rem;
     }
-    
+
     .algorithm-box {
       background: #1f2937;
       color: #e5e7eb;
@@ -178,7 +178,7 @@
     .algorithm-box .comment { color: #9ca3af; }
     .algorithm-box .keyword { color: #f472b6; }
     .algorithm-box .function { color: #60a5fa; }
-    
+
     table.comparison-table {
       width: 100%;
       border-collapse: collapse;
@@ -200,12 +200,12 @@
     table.comparison-table td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border-light); }
     table.comparison-table tr:last-child td { border-bottom: none; }
     table.comparison-table tr:hover td { background: var(--bg-gray); }
-    
+
     pre code { display: block; padding: 1rem; background: #1f2937; color: #e5e7eb; border-radius: 6px; overflow-x: auto; }
-    .bibtex-box { 
+    .bibtex-box {
       background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
       border: 1px solid #334155;
-      border-radius: 12px; 
+      border-radius: 12px;
       padding: 1.5rem;
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     }
@@ -221,14 +221,14 @@
       background: transparent;
       padding: 0;
     }
-    
+
     footer.footer { background: #1f2937; color: #9ca3af; padding: 2rem; }
     footer a { color: #93c5fd; }
     footer a:hover { color: #bfdbfe; }
-    
+
     .emoji-icon { margin-right: 0.5rem; }
     .section { padding: 3rem 1.5rem; }
-    
+
     .formula-box {
       background: transparent;
       border: none;
@@ -236,8 +236,7 @@
       margin: 1.5rem 0;
       text-align: center;
     }
-    
-    
+
     .conclusion-box {
       background: #fff;
       border: 1px solid var(--border-light);
@@ -251,6 +250,70 @@
     .conclusion-box p:last-child {
       margin-bottom: 0;
     }
+
+    /* Stat cards for headline numbers */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin: 1.5rem 0;
+    }
+    @media (max-width: 768px) { .stat-grid { grid-template-columns: 1fr; } }
+    .stat-card {
+      background: #fff;
+      border: 1px solid var(--border-light);
+      border-top: 3px solid var(--primary);
+      border-radius: 8px;
+      padding: 1.5rem 1rem;
+      text-align: center;
+    }
+    .stat-card .stat-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1.1;
+    }
+    .stat-card .stat-label {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+    }
+
+    /* Two-up figure layout */
+    .fig-row {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+      margin: 1.5rem 0;
+    }
+    .fig-row .fig-col { flex: 1; text-align: center; }
+    .fig-row .fig-col img { max-width: 100%; border-radius: 4px; }
+    @media (max-width: 768px) { .fig-row { flex-direction: column; } }
+
+    /* Context-bound comparison cards */
+    .bound-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin: 1.75rem 0;
+    }
+    @media (max-width: 768px) { .bound-grid { grid-template-columns: 1fr; } }
+    .bound-card {
+      background: #fff;
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 1.5rem 1rem;
+      text-align: center;
+    }
+    .bound-card.serial { border-top: 3px solid #dc2626; }
+    .bound-card.fj { border-top: 3px solid #d97706; }
+    .bound-card.mplm { border-top: 3px solid var(--primary); }
+    .bound-card .bound-name { font-weight: 700; color: var(--text-dark); margin-bottom: 0.75rem; }
+    .bound-card .bound-formula { font-size: 1.15rem; margin: 0.5rem 0; }
+    .bound-card .bound-tag { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.6rem; }
+
+    table.comparison-table td.best { color: var(--primary); font-weight: 700; }
+    .source-tag { font-size: 0.8rem; color: var(--text-muted); }
   </style>
 </head>
 <body>
@@ -261,18 +324,18 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Message Passing Language Models</h1>
+          <h1 class="title is-2 publication-title">Message Passing Enables Efficient Reasoning</h1>
 
             <div class="is-size-5 publication-authors">
-              <!-- Replace with your actual author list -->
-              <span class="author-block"><a href="https://daman1209arora.github.io">Daman Arora</a><sup>*</sup>,</span>
               <span class="author-block"><a href="">Xuecheng Liu</a><sup>*</sup>,</span>
+              <span class="author-block"><a href="https://daman1209arora.github.io">Daman Arora</a><sup>*</sup>,</span>
               <span class="author-block"><a href="https://gokul.dev">Gokul Swamy</a><sup></sup>,</span>
               <span class="author-block"><a href="https://azanette.com">Andrea Zanette</a><sup></sup></span>
             </div>
 
             <div class="is-size-6 publication-authors" style="margin-top: 1rem;">
               <span class="author-block"><sup></sup>Carnegie Mellon University</span>
+              <br><span class="source-tag"><sup>*</sup>Equal contribution.</span>
             </div>
 
             <div class="column has-text-centered" style="margin-top: 0.1rem;">
@@ -297,10 +360,10 @@
 
             <div class="is-size-6 publication-authors" style="margin-top: 0.01rem;">
               <span class="author-block">
-                <strong>TL;DR</strong> We propose a framework for language models to pass messages, allowing them to reason more efficiently.
+                <strong>TL;DR</strong> We show how message passing between parallel LLM threads enables better test-time scaling by <strong>reducing communication costs</strong> and letting threads <strong>preempt</strong> each other. Experiments on Sudoku, SAT, and long-context QA show better or comparable performance at significantly higher efficiency.
               </span>
             </div>
-            
+
 
         </div>
       </div>
@@ -308,118 +371,100 @@
   </div>
 </section>
 
+<!-- Headline scaling figure -->
 <section class="section section-gray" style="padding-top: 0.5rem; padding-bottom: 0.5rem;">
   <div class="container is-max-desktop">
     <div class="content has-text-justified">
-
       <div class="figure-container">
         <center>
-          <img src="./static/images/token_scaling_with_slopes.jpg" alt="Token scaling plots" style="max-width: 100%;">
+          <img src="./static/images/token_scaling_with_slopes_hi.png" alt="Token scaling plots" style="max-width: 100%;">
         </center>
-        <p class="figure-caption" style="max-width: 64%; margin: 0 auto;">
-          <strong>Scaling results on Sudoku puzzles.</strong> MPLMs achieve better scaling exponents compared to standard LLM decoding methods, enabling efficient reasoning on larger puzzles.
+        <p class="figure-caption" style="max-width: 70%; margin: 0 auto;">
+          <strong>Scaling on Sudoku.</strong> Sequential tokens (left) and maximum context (right) vs. problem size on log&ndash;log axes.
+          MPLM has a much <strong>lower scaling exponent</strong> (&alpha;&nbsp;&approx;&nbsp;1.1&ndash;1.2) than Monolithic CoT and Fork-Join (&alpha;&nbsp;&approx;&nbsp;1.8), enabling efficient reasoning on far larger puzzles.
         </p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ==================== TWO PERSPECTIVES ==================== -->
+<!-- ==================== INTRODUCTION ==================== -->
 <section class="section section-white">
   <div class="container is-max-desktop">
     <div class="content has-text-justified">
-      
+
       <h2 class="title is-3 section-title" style="color:#1F3A5F !important;">Introduction</h2>
-      
+
       <p>
-        For reasoning, generating long Chains-of-Thoughts (CoTs) is a computational bottleneck. Parallelism using fork and join (FJ) primitives to divide work across multiple <em>LLM threads</em> necessitates a centralized controller which increases communication costs and limits scalability. 
-        In response, we introduce <strong>Message Passing Language Models</strong> (MPLMs): a novel, general-purpose framework where LLM threads can <em>spawn</em> other threads that can communicate with each other using <em>send</em> and <em>recv</em> primitives. 
+        For reasoning, generating long Chains-of-Thought (CoTs) is a computational bottleneck. Recent parallel methods use fork-and-join (FJ) primitives to divide work across multiple <em>LLM threads</em>, but in this paradigm threads are <em>transient</em> and all coordination is <em>centralized</em>: every piece of information must flow back through a single parent thread, creating communication bottlenecks and implicit serialization. Conceptually, this is like an organization where every routine decision must be routed through a single CEO.
       </p>
-      
+      <p>
+        In response, we introduce <strong>Message Passing Language Models</strong> (MPLMs): a framework where a single model decomposes a task into persistent, semi-independent threads that <em>spawn</em> other threads and communicate <strong>point-to-point</strong> using <em>send</em> and <em>recv</em> primitives. MPLMs gain efficiency through two key mechanisms: <strong>(1)&nbsp;reduced communication cost</strong>, by avoiding redundant context sharing, and <strong>(2)&nbsp;preemption</strong>, letting threads terminate early on partial information from peers. Crucially, the model itself learns <em>when</em>, <em>with whom</em>, and <em>what</em> to communicate &mdash; the protocol is learned, not hard-coded. We validate MPLMs across three testbeds: <strong>Sudoku</strong> (sparse local communication), <strong>3-SAT</strong> (asynchronous preemption), and <strong>long-context QA</strong> (LongBench-v2).
+      </p>
+
       <div class="figure-container">
         <center>
-          <img src="./static/images/main_figure.jpg" alt="MPLM Main Figure" style="max-width: 60%;">
+          <img src="./static/images/main_figure_hi.png" alt="MPLM Main Figure" style="max-width: 82%;">
         </center>
-        <p class="figure-caption" style="max-width: 52%; margin: 0 auto;">
-          In <strong>Message Passing Language Models (MPLMs)</strong>, concurrently decoded threads communicate directly through explicit <em>send</em> and <em>recv</em> primitives and maintain a persistent context, enabling fine-grained coordination and information sharing throughout inference making them more efficient than the serial CoT and parallel Fork-Join paradigms.
+        <p class="figure-caption" style="max-width: 70%; margin: 0 auto;">
+          <strong>Top:</strong> Serial CoT generates one monolithic trace. <strong>Middle:</strong> Fork-Join spawns transient threads synchronized via global joins. <strong>Bottom:</strong> In <strong>MPLMs</strong>, concurrently decoded threads communicate directly through <em>send</em>/<em>recv</em> and maintain a persistent context, enabling fine-grained coordination throughout inference.
         </p>
       </div>
-
-
-      <!-- <div class="columns is-vcentered is-variable is-6">
-  
-        Left figure
-        <div class="column is-6 has-text-centered">
-          <img src="./static/images/main_figure.jpg"
-               alt="MPLM Main Figure"
-               style="max-width: 100%;">
-          <p class="figure-caption" style="margin: 0.75rem auto 0;">
-            In <strong>Message Passing Language Models (MPLMs)</strong>, concurrently decoded threads communicate directly through explicit
-            <em>send</em> and <em>recv</em> primitives and maintain a persistent context.
-          </p>
-        </div>
-      
-        Right figure
-        <div class="column is-6 has-text-centered">
-          <img src="./static/images/token_scaling_with_slopes.jpg"
-               alt="Token scaling plots"
-               style="max-width: 100%;">
-          <p class="figure-caption" style="margin: 0.75rem auto 0;">
-            <strong>Scaling results on Sudoku puzzles.</strong> MPLMs achieve better scaling exponents compared to standard decoding methods.
-          </p>
-        </div>
-      
-      </div> -->
-      
 
     </div>
   </div>
 </section>
 
-<!-- ==================== PROBABILISTIC MODELING LENS ==================== -->
+<!-- ==================== THEORY ==================== -->
 <section class="section section-gray">
   <div class="container is-max-desktop">
     <div class="content has-text-justified">
-      
-      <h2 class="title is-3 section-title" style="color:#1F3A5F !important;">Scaling Results</h2>
-    
 
-
-
-      <div class="figure-container">
-        <center>
-          <img src="./static/images/mplm_results_table.png" alt="Token scaling plots" style="max-width: 70%;">
-        </center>
-        <p class="figure-caption" style="max-width: 64%; margin: 0 auto;">
-          Average <strong>latency and accuracy</strong> across Sudoku sizes. Red cross (❌) denotes infeasible training due to context or compute constraints and a green tick
-          (✅) denotes the best scalable model. MPLM remains feasible and accurate at larger grid sizes, while FJ, Serial baselines, and frontier models fail to scale.
-        </p>
-      </div>
-
-
+      <h2 class="title is-3 section-title" style="color:#1F3A5F !important;">Why Message Passing Is More Efficient</h2>
 
       <p>
-        As a proof of concept, we consider Sudoku puzzles since they are deterministic, naturally parallelizable, exhibits a complex communication structure, and allows scaling complexity incrementally.
-        we theoretically and empirically show better scaling with MPLMs on Sudoku puzzles, scaling to upto 25×25 Sudoku puzzles which are challenging even for GPT-5 Pro. 
-   
+        Consider a task that runs for $T$ iterations. In each iteration, $N$ workers run in parallel; each produces up to $W$ tokens and needs information from at most $k$ neighbors via messages of size $M$. Since context length is the fundamental bottleneck for scaling inference, we compare the <strong>maximum context</strong> each paradigm needs.
       </p>
 
+      <div class="bound-grid">
+        <div class="bound-card serial">
+          <div class="bound-name">Serial CoT</div>
+          <div class="bound-formula">$\mathcal{O}(T N k M)$</div>
+          <div class="bound-tag">No parallelism &mdash; everything serialized into one context.</div>
+        </div>
+        <div class="bound-card fj">
+          <div class="bound-name">Fork-Join</div>
+          <div class="bound-formula">$\mathcal{O}(T N M)$</div>
+          <div class="bound-tag">Parallel workers, but a central parent aggregates all $N$ messages each round.</div>
+        </div>
+        <div class="bound-card mplm">
+          <div class="bound-name">MPLM (ours)</div>
+          <div class="bound-formula">$\mathcal{O}(T k M)$</div>
+          <div class="bound-tag">Each persistent worker only talks to its $k$ neighbors.</div>
+        </div>
+      </div>
+
+      <div class="insight-box">
+        <strong>Key takeaway.</strong> By exploiting <em>sparse</em> communication, MPLMs reduce the maximum context by a factor of $\Theta(N/k)$ compared to Fork-Join &mdash; a large saving whenever each subtask depends on only a few others (as in code, where modules depend on a handful of interfaces rather than the whole codebase).
+      </div>
 
     </div>
   </div>
 </section>
 
+<!-- ==================== RECIPE / DIRECTIVES ==================== -->
 <section class="section section-white">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 section-title" style="color:#1F3A5F !important;">Recipe</h2>
-    
+    <h2 class="title is-3 section-title" style="color:#1F3A5F !important;">How It Works</h2>
+
     <div class="content has-text-justified">
 
       <h3>Execution Control Directives</h3>
       <p>
-        MPLMs use a small set of <em>directives</em>—explicit instructions generated by the model—to control execution.
+        MPLMs use a small set of <em>directives</em>&mdash;special tagged strings the model generates&mdash;to control execution.
         These play roles analogous to process creation, communication, synchronization, and termination in
-        message-passing systems.
+        message-passing systems (MPI). A lightweight <em>controller</em>, layered on top of a standard batched inference
+        engine (e.g. vLLM / SGLang), interprets them while leaving token sampling and KV-cache management unchanged.
       </p>
 
       <table class="directives-table">
@@ -437,7 +482,7 @@
               Creates new LLM threads with the given IDs and the prompt.<br>
             </td>
             <td style="text-align: center;">
-              <code>&lt;spawn[id1,id2,…,idN]&gt;prompt&lt;/spawn&gt;</code>
+              <code>&lt;spawn[id1,id2,&hellip;,idN]&gt;prompt&lt;/spawn&gt;</code>
             </td>
           </tr>
           <tr>
@@ -446,7 +491,7 @@
               Sends a message to one or more specified LLM threads.<br>
             </td>
             <td style="text-align: center;">
-              <code>&lt;send[id1,id2,…,idN]&gt;message&lt;/send&gt;</code>
+              <code>&lt;send[id1,id2,&hellip;,idN]&gt;message&lt;/send&gt;</code>
             </td>
           </tr>
           <tr>
@@ -455,7 +500,7 @@
               Blocks execution until messages are received from the specified threads.<br>
             </td>
             <td style="text-align: center;">
-              <code>&lt;recv[id1,id2,…,idN]&gt;</code>
+              <code>&lt;recv[id1,id2,&hellip;,idN]&gt;</code>
             </td>
           </tr>
           <tr>
@@ -469,14 +514,210 @@
           </tr>
         </tbody>
       </table>
-      
-      <p>
-        We generate CoT data for different strategies using a simple program and use Supervised Fine Tuning (SFT) on Qwen3-0.6B-Base. 
-        Implementing message passing requires to implement a <em>controller</em> on top of the inference engine. 
 
+      <p>
+        For Sudoku and SAT we generate CoT data with a simple program and use Supervised Fine-Tuning (SFT) on
+        <strong>Qwen3-0.6B-Base</strong> (each run cost under 48 H100-hours). For long-context QA, large models follow the
+        protocol <strong>zero-shot</strong> from prompting alone &mdash; no training required.
       </p>
     </div>
-    
+
+  </div>
+</section>
+
+<!-- ==================== SUDOKU ==================== -->
+<section class="section section-gray">
+  <div class="container is-max-desktop">
+    <div class="content has-text-justified">
+
+      <h2 class="title is-3 section-title" style="color:#1F3A5F !important;">Sudoku: Sparse Communication</h2>
+
+      <p>
+        We assign one worker to each cell ($N^4$ workers for an $N^2\times N^2$ grid). A worker that finds a unique value
+        <em>sends</em> it only to its <strong>neighbors</strong> (cells sharing a row, column, or sub-grid) and stops; otherwise it
+        waits to <em>receive</em> more information. This sparse, local communication is exactly the structure that makes MPLMs
+        context-efficient.
+      </p>
+
+      <div class="fig-row">
+        <div class="fig-col">
+          <img src="./static/images/sudoku_example.png" alt="Sudoku communication pattern" style="max-width: 80%;">
+          <p class="figure-caption">
+            The worker for the green cell only communicates with its blue neighbors &mdash; not the whole grid.
+          </p>
+        </div>
+        <div class="fig-col">
+          <img src="./static/images/mplm_results_table.png" alt="Sudoku latency and accuracy table" style="max-width: 100%;">
+          <p class="figure-caption">
+            Avg. latency and accuracy across grid sizes. &#10005; = infeasible to train under context/compute limits;
+            &#10003; = best scalable model.
+          </p>
+        </div>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-number">25&times;25</div>
+          <div class="stat-label">Largest grid MPLM solves &mdash; out of reach for Serial &amp; FJ</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">72%</div>
+          <div class="stat-label">MPLM accuracy on 25&times;25, trained on just 1000 puzzles</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">&alpha;&nbsp;&approx;&nbsp;1.1</div>
+          <div class="stat-label">MPLM context-scaling exponent vs. &approx;1.8 for CoT &amp; FJ</div>
+        </div>
+      </div>
+
+      <p>
+        The improved scaling translates into qualitatively new capability. DeepSeek-R1 already fails on standard
+        $9\times 9$ puzzles, and <strong>GPT-5 Pro</strong> (no tools) solves only $1/10$ of $25\times 25$ puzzles &mdash; whereas a
+        tiny fine-tuned MPLM solves <strong>72%</strong>. This is not a head-to-head comparison, but an illustration of what
+        structured parallelism can unlock that monolithic CoT cannot, regardless of scale.
+      </p>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SAT / PREEMPTION ==================== -->
+<section class="section section-white">
+  <div class="container is-max-desktop">
+    <div class="content has-text-justified">
+
+      <h2 class="title is-3 section-title" style="color:#1F3A5F !important;">3-SAT: Preemption</h2>
+
+      <p>
+        Where Sudoku highlights communication efficiency, SAT highlights <strong>asynchronous message passing</strong> and
+        <strong>preemption</strong>. Following a distributed DPLL search, each worker branches on a variable and spawns two
+        children. The moment any branch finds a satisfying assignment, it <em>sends</em> a success message to its parent, which
+        immediately <strong>preempts</strong> the remaining sibling sub-trees. This is impossible under Fork-Join, where the parent
+        can only aggregate <em>after</em> all workers finish &mdash; so its latency is set by the <em>last</em> leaf rather than the
+        <em>first</em> solution.
+      </p>
+
+      <div class="figure-container">
+        <center>
+          <img src="./static/images/sat_preempt.png" alt="SAT preemption tree" style="max-width: 62%;">
+        </center>
+        <p class="figure-caption" style="max-width: 70%; margin: 0 auto;">
+          A worker finds a solution and reports <code>SAT</code> to its parent; the parent then cancels the still-running
+          sibling sub-tree, avoiding wasted computation.
+        </p>
+      </div>
+
+      <div class="fig-row">
+        <div class="fig-col">
+          <img src="./static/images/sat_avg_latency.png" alt="SAT average latency">
+          <p class="figure-caption">
+            <strong>Average latency</strong> over 100 test problems per variable count. MPLM is fastest at every size; Serial
+            exhausts context past 12 variables.
+          </p>
+        </div>
+        <div class="fig-col">
+          <img src="./static/images/sat_max_speedup.png" alt="SAT maximum speedup">
+          <p class="figure-caption">
+            <strong>Maximum-speedup case</strong> per variable count. Gains are largest on highly unbalanced search trees,
+            reaching up to <strong>~2.6&times;</strong> over Fork-Join.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==================== LONG-CONTEXT QA ==================== -->
+<section class="section section-gray">
+  <div class="container is-max-desktop">
+    <div class="content has-text-justified">
+
+      <h2 class="title is-3 section-title" style="color:#1F3A5F !important;">Long-Context QA (LongBench-v2)</h2>
+
+      <p>
+        Beyond controlled tasks, we test whether <em>prompted</em> large models can already use the MPLM protocol &mdash; with
+        <strong>no fine-tuning</strong>. On <strong>LongBench-v2</strong> (503 multiple-choice questions, contexts of 8K&ndash;2M words), the
+        parent spawns one worker per context chunk; each worker summarizes its chunk and the parent then
+        <strong>selectively and iteratively</strong> queries only the relevant workers. Because workers are <strong>persistent</strong>, the parent
+        can re-query the same region for finer detail without reloading it (aided by prefix caching) &mdash; unlike the transient,
+        stateless workers of the Recursive Language Model (RLM) fork-join baseline.
+      </p>
+
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-number">1.7&times;</div>
+          <div class="stat-label">Lower latency vs. RLM on Qwen3-30B-A3B (105.5s &rarr; 61.8s)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">+8.6 pts</div>
+          <div class="stat-label">Higher avg. accuracy on Qwen3-30B-A3B (29.8% &rarr; 38.4%)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">2.2&times;</div>
+          <div class="stat-label">Lower latency on Qwen3.6-35B-A3B at matched accuracy (223.5s &rarr; 102.2s)</div>
+        </div>
+      </div>
+
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>Method</th>
+            <th>Avg. Accuracy</th>
+            <th>Avg. Latency</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td rowspan="2"><strong>Qwen3-30B-A3B</strong></td>
+            <td>RLM (fork-join)</td>
+            <td>29.8%</td>
+            <td>105.5s</td>
+          </tr>
+          <tr>
+            <td><strong>MPLM (ours)</strong></td>
+            <td class="best">38.4%</td>
+            <td class="best">61.8s</td>
+          </tr>
+          <tr>
+            <td rowspan="2"><strong>Qwen3.6-35B-A3B</strong></td>
+            <td>RLM (fork-join)</td>
+            <td>46.7%</td>
+            <td>223.5s</td>
+          </tr>
+          <tr>
+            <td><strong>MPLM (ours)</strong></td>
+            <td>46.5%</td>
+            <td class="best">102.2s</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="source-tag">
+        Averages over all LongBench-v2 partitions, both models evaluated without fine-tuning. MPLM substantially reduces
+        latency for both models while improving accuracy on the smaller model and matching it on the larger one.
+      </p>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CONCLUSION ==================== -->
+<section class="section section-white">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3 section-title" style="color:#1F3A5F !important;">Conclusion</h2>
+    <div class="conclusion-box">
+      <p>
+        MPLMs let a single LLM dynamically create threads and communicate point-to-point, breaking complex tasks into
+        sub-problems that coordinate only when necessary &mdash; much like a real organization rather than a single CEO.
+        Across Sudoku, SAT, and long-context QA, this decentralized design requires less context and is more efficient at
+        inference time than serial CoT and centralized fork-join.
+      </p>
+      <p>
+        The most promising direction ahead is generating message-passing CoT data to train models on open-ended domains
+        such as code generation, and extending the primitive set (e.g. broadcast and all-gather) for richer coordination.
+      </p>
+    </div>
   </div>
 </section>
 
@@ -486,8 +727,8 @@
     <h2 class="title is-3 section-title">BibTeX</h2>
     <div class="bibtex-box">
       <pre><code>@article{arora2026mplm,
-  title={Reasoning with Message Passing Language Models},
-  author={Arora, Daman and Liu, Xuecheng and Swamy, Gokul and Zanette, Andrea},
+  title={Message Passing Enables Efficient Reasoning},
+  author={Liu, Xuecheng and Arora, Daman and Swamy, Gokul and Zanette, Andrea},
   journal={arXiv preprint},
   year={2026}
 }</code></pre>
