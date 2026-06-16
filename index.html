@@ -371,23 +371,6 @@
   </div>
 </section>
 
-<!-- Headline scaling figure -->
-<section class="section section-gray" style="padding-top: 0.5rem; padding-bottom: 0.5rem;">
-  <div class="container is-max-desktop">
-    <div class="content has-text-justified">
-      <div class="figure-container">
-        <center>
-          <img src="./static/images/token_scaling_with_slopes_hi.png" alt="Token scaling plots" style="max-width: 100%;">
-        </center>
-        <p class="figure-caption" style="max-width: 70%; margin: 0 auto;">
-          <strong>Scaling on Sudoku.</strong> Sequential tokens (left) and maximum context (right) vs. problem size on log&ndash;log axes.
-          MPLM has a much <strong>lower scaling exponent</strong> (&alpha;&nbsp;&approx;&nbsp;1.1&ndash;1.2) than Monolithic CoT and Fork-Join (&alpha;&nbsp;&approx;&nbsp;1.8), enabling efficient reasoning on far larger puzzles.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ==================== INTRODUCTION ==================== -->
 <section class="section section-white">
   <div class="container is-max-desktop">
@@ -553,6 +536,16 @@
             &#10003; = best scalable model.
           </p>
         </div>
+      </div>
+
+      <div class="figure-container">
+        <center>
+          <img src="./static/images/token_scaling_with_slopes_hi.png" alt="Token scaling plots" style="max-width: 100%;">
+        </center>
+        <p class="figure-caption" style="max-width: 70%; margin: 0 auto;">
+          <strong>Scaling on Sudoku.</strong> Sequential tokens (left) and maximum context (right) vs. problem size on log&ndash;log axes.
+          MPLM has a much <strong>lower scaling exponent</strong> (&alpha;&nbsp;&approx;&nbsp;1.1&ndash;1.2) than Monolithic CoT and Fork-Join (&alpha;&nbsp;&approx;&nbsp;1.8), enabling efficient reasoning on far larger puzzles.
+        </p>
       </div>
 
       <div class="stat-grid">
