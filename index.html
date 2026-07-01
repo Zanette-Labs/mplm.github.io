@@ -33,8 +33,8 @@
 
   <style>
     :root {
-      --primary: #1e40af;
-      --primary-light: #3b82f6;
+      --primary: #C41230;
+      --primary-light: #E0455A;
       --text-dark: #1f2937;
       --text-muted: #6b7280;
       --bg-white: #ffffff;
@@ -46,7 +46,7 @@
 
     .hero { background: #fff; border-bottom: 1px solid #e5e7eb; }
     .hero .title.is-1 { color: #1f2937; font-weight: 700; }
-    .hero .publication-authors a:hover { color: #3b82f6 !important; text-decoration: underline; }
+    .hero .publication-authors a:hover { color: #C41230 !important; text-decoration: underline; }
     .hero .publication-authors span { color: #4b5563; }
 
     .publication-links .button {
@@ -223,8 +223,8 @@
     }
 
     footer.footer { background: #1f2937; color: #9ca3af; padding: 2rem; }
-    footer a { color: #93c5fd; }
-    footer a:hover { color: #bfdbfe; }
+    footer a { color: #ef8b98; }
+    footer a:hover { color: #f5b8c0; }
 
     .emoji-icon { margin-right: 0.5rem; }
     .section { padding: 3rem 1.5rem; }
@@ -305,7 +305,7 @@
       padding: 1.5rem 1rem;
       text-align: center;
     }
-    .bound-card.serial { border-top: 3px solid #dc2626; }
+    .bound-card.serial { border-top: 3px solid #64748b; }
     .bound-card.fj { border-top: 3px solid #d97706; }
     .bound-card.mplm { border-top: 3px solid var(--primary); }
     .bound-card .bound-name { font-weight: 700; color: var(--text-dark); margin-bottom: 0.75rem; }
@@ -376,7 +376,7 @@
   <div class="container is-max-desktop">
     <div class="content has-text-justified">
 
-      <h2 class="title is-3 section-title" style="color:#1F3A5F !important;">Introduction</h2>
+      <h2 class="title is-3 section-title" style="color:#C41230 !important;">Introduction</h2>
 
       <p>
         For reasoning, generating long Chains-of-Thought (CoTs) is a computational bottleneck. Recent parallel methods use fork-and-join (FJ) primitives to divide work across multiple <em>LLM threads</em>, but in this paradigm threads are <em>transient</em> and all coordination is <em>centralized</em>: every piece of information must flow back through a single parent thread, creating communication bottlenecks and implicit serialization. Conceptually, this is like an organization where every routine decision must be routed through a single CEO.
@@ -403,7 +403,7 @@
   <div class="container is-max-desktop">
     <div class="content has-text-justified">
 
-      <h2 class="title is-3 section-title" style="color:#1F3A5F !important;">Why Message Passing Is More Efficient</h2>
+      <h2 class="title is-3 section-title" style="color:#C41230 !important;">Why Message Passing Is More Efficient</h2>
 
       <p>
         Consider a task that runs for $T$ iterations. In each iteration, $N$ workers run in parallel; each produces up to $W$ tokens and needs information from at most $k$ neighbors via messages of size $M$. Since context length is the fundamental bottleneck for scaling inference, we compare the <strong>maximum context</strong> each paradigm needs.
@@ -438,7 +438,7 @@
 <!-- ==================== RECIPE / DIRECTIVES ==================== -->
 <section class="section section-white">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 section-title" style="color:#1F3A5F !important;">How It Works</h2>
+    <h2 class="title is-3 section-title" style="color:#C41230 !important;">How It Works</h2>
 
     <div class="content has-text-justified">
 
@@ -513,7 +513,7 @@
   <div class="container is-max-desktop">
     <div class="content has-text-justified">
 
-      <h2 class="title is-3 section-title" style="color:#1F3A5F !important;">Sudoku: Sparse Communication</h2>
+      <h2 class="title is-3 section-title" style="color:#C41230 !important;">Sudoku: Sparse Communication</h2>
 
       <p>
         We assign one worker to each cell ($N^4$ workers for an $N^2\times N^2$ grid). A worker that finds a unique value
@@ -521,32 +521,6 @@
         waits to <em>receive</em> more information. This sparse, local communication is exactly the structure that makes MPLMs
         context-efficient.
       </p>
-
-      <div class="fig-row">
-        <div class="fig-col">
-          <img src="./static/images/sudoku_example.png" alt="Sudoku communication pattern" style="max-width: 80%;">
-          <p class="figure-caption">
-            The worker for the green cell only communicates with its blue neighbors &mdash; not the whole grid.
-          </p>
-        </div>
-        <div class="fig-col">
-          <img src="./static/images/mplm_results_table.png" alt="Sudoku latency and accuracy table" style="max-width: 100%;">
-          <p class="figure-caption">
-            Avg. latency and accuracy across grid sizes. &#10005; = infeasible to train under context/compute limits;
-            &#10003; = best scalable model.
-          </p>
-        </div>
-      </div>
-
-      <div class="figure-container">
-        <center>
-          <img src="./static/images/token_scaling_with_slopes_hi.png" alt="Token scaling plots" style="max-width: 100%;">
-        </center>
-        <p class="figure-caption" style="max-width: 70%; margin: 0 auto;">
-          <strong>Scaling on Sudoku.</strong> Sequential tokens (left) and maximum context (right) vs. problem size on log&ndash;log axes.
-          MPLM has a much <strong>lower scaling exponent</strong> (&alpha;&nbsp;&approx;&nbsp;1.1&ndash;1.2) than Monolithic CoT and Fork-Join (&alpha;&nbsp;&approx;&nbsp;1.8), enabling efficient reasoning on far larger puzzles.
-        </p>
-      </div>
 
       <div class="stat-grid">
         <div class="stat-card">
@@ -558,9 +532,80 @@
           <div class="stat-label">MPLM accuracy on 25&times;25, trained on just 1000 puzzles</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number">&alpha;&nbsp;&approx;&nbsp;1.1</div>
-          <div class="stat-label">MPLM context-scaling exponent vs. &approx;1.8 for CoT &amp; FJ</div>
+          <div class="stat-number">30&times;</div>
+          <div class="stat-label">Smaller peak context than serial CoT &amp; FJ</div>
         </div>
+      </div>
+
+      <div class="figure-container">
+        <center>
+          <img src="./static/images/sudoku_example.png" alt="Sudoku communication pattern" style="max-width: 40%;">
+        </center>
+        <p class="figure-caption">
+          The worker for the green cell only communicates with its blue neighbors &mdash; not the whole grid.
+        </p>
+      </div>
+
+      <table class="comparison-table" style="text-align:center; margin:1.5rem auto;">
+        <thead>
+          <tr>
+            <th style="text-align:center;">Method</th>
+            <th style="text-align:center;"><em>n</em>=2 (4&times;4)</th>
+            <th style="text-align:center;"><em>n</em>=3 (9&times;9)</th>
+            <th style="text-align:center;"><em>n</em>=4 (16&times;16)</th>
+            <th style="text-align:center;"><em>n</em>=5 (25&times;25)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background:#fcebee;">
+            <td><strong>MPLM (ours)</strong></td>
+            <td><strong>2.105s (100%)</strong></td>
+            <td><strong>14.939s (100%)</strong></td>
+            <td><strong>117.684s (92%)</strong></td>
+            <td><strong>1017.263s (72%)</strong></td>
+          </tr>
+          <tr>
+            <td>FJ</td>
+            <td>2.940s (100%)</td>
+            <td>59.562s (93%)</td>
+            <td><span style="color:#C41230;">&#10007;</span></td>
+            <td><span style="color:#C41230;">&#10007;</span></td>
+          </tr>
+          <tr>
+            <td>Serial</td>
+            <td>4.545s (99%)</td>
+            <td><span style="color:#C41230;">&#10007;</span></td>
+            <td><span style="color:#C41230;">&#10007;</span></td>
+            <td><span style="color:#C41230;">&#10007;</span></td>
+          </tr>
+          <tr>
+            <td>DeepSeek R1</td>
+            <td>144.271s (90%)</td>
+            <td>765.982s (0%)</td>
+            <td>597.939s (0%)</td>
+            <td>431.751s (0%)</td>
+          </tr>
+          <tr>
+            <td>GPT-5 Pro</td>
+            <td>100%</td>
+            <td>100%</td>
+            <td>45%</td>
+            <td>20%</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="figure-caption">
+        Avg. latency and accuracy across grid sizes. &#10005; = infeasible to train under context/compute limits.
+      </p>
+
+      <div class="figure-container">
+        <center>
+          <img src="./static/images/token_scaling_with_slopes_hi.png" alt="Token scaling plots" style="max-width: 100%;">
+        </center>
+        <p class="figure-caption" style="max-width: 70%; margin: 0 auto;">
+          <strong>Scaling on Sudoku.</strong> Sequential tokens (left) and maximum context (right) vs. problem size on log&ndash;log axes.
+          MPLM has a much <strong>lower scaling exponent</strong> (&alpha;&nbsp;&approx;&nbsp;1.1&ndash;1.2) than Monolithic CoT and Fork-Join (&alpha;&nbsp;&approx;&nbsp;1.8), enabling efficient reasoning on far larger puzzles.
+        </p>
       </div>
 
       <p>
@@ -579,7 +624,7 @@
   <div class="container is-max-desktop">
     <div class="content has-text-justified">
 
-      <h2 class="title is-3 section-title" style="color:#1F3A5F !important;">3-SAT: Preemption</h2>
+      <h2 class="title is-3 section-title" style="color:#C41230 !important;">3-SAT: Preemption</h2>
 
       <p>
         Where Sudoku highlights communication efficiency, SAT highlights <strong>asynchronous message passing</strong> and
@@ -621,7 +666,7 @@
   <div class="container is-max-desktop">
     <div class="content has-text-justified">
 
-      <h2 class="title is-3 section-title" style="color:#1F3A5F !important;">Long-Context QA (LongBench-v2)</h2>
+      <h2 class="title is-3 section-title" style="color:#C41230 !important;">Long-Context QA (LongBench-v2)</h2>
 
       <p>
         Beyond controlled tasks, we test whether <em>prompted</em> large models can already use the MPLM protocol &mdash; with
@@ -693,7 +738,7 @@
 <!-- ==================== CONCLUSION ==================== -->
 <section class="section section-white">
   <div class="container is-max-desktop content">
-    <h2 class="title is-3 section-title" style="color:#1F3A5F !important;">Conclusion</h2>
+    <h2 class="title is-3 section-title" style="color:#C41230 !important;">Conclusion</h2>
     <div class="conclusion-box">
       <p>
         MPLMs let a single LLM dynamically create threads and communicate point-to-point, breaking complex tasks into
