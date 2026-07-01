@@ -600,21 +600,16 @@
         </p>
       </div>
 
-      <div class="fig-row">
-        <div class="fig-col">
-          <img src="./static/images/sat_avg_latency.png" alt="SAT average latency">
-          <p class="figure-caption">
-            <strong>Average latency</strong> over 100 test problems per variable count. MPLM is fastest at every size; Serial
-            exhausts context past 12 variables.
-          </p>
-        </div>
-        <div class="fig-col">
-          <img src="./static/images/sat_max_speedup.png" alt="SAT maximum speedup">
-          <p class="figure-caption">
-            <strong>Maximum-speedup case</strong> per variable count. Gains are largest on highly unbalanced search trees,
-            reaching up to <strong>~2.6&times;</strong> over Fork-Join.
-          </p>
-        </div>
+      <div class="figure-container">
+        <center>
+          <img src="./static/images/sat_latency.png" alt="SAT latency" style="max-width: 100%;">
+        </center>
+        <p class="figure-caption">
+          <strong>Left:</strong> average latency over 100 test problems per variable count &mdash; MPLM is fastest at every size,
+          while Serial exhausts context past 12 variables. <strong>Right:</strong> the maximum FJ&ndash;MPLM latency gap per
+          variable count &mdash; gains are largest on highly unbalanced search trees, reaching up to <strong>~2.6&times;</strong>
+          over Fork-Join.
+        </p>
       </div>
 
     </div>
@@ -640,11 +635,11 @@
       <div class="stat-grid">
         <div class="stat-card">
           <div class="stat-number">1.7&times;</div>
-          <div class="stat-label">Lower latency vs. RLM on Qwen3-30B-A3B (105.5s &rarr; 61.8s)</div>
+          <div class="stat-label">Lower latency vs. RLM on Qwen3-30B-A3B (105.7s &rarr; 61.3s)</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number">+8.6 pts</div>
-          <div class="stat-label">Higher avg. accuracy on Qwen3-30B-A3B (29.8% &rarr; 38.4%)</div>
+          <div class="stat-number">+8.1 pts</div>
+          <div class="stat-label">Higher avg. accuracy on Qwen3-30B-A3B (29.7% &rarr; 37.8%)</div>
         </div>
         <div class="stat-card">
           <div class="stat-number">2.2&times;</div>
@@ -665,13 +660,13 @@
           <tr>
             <td rowspan="2"><strong>Qwen3-30B-A3B</strong></td>
             <td>RLM (fork-join)</td>
-            <td>29.8%</td>
-            <td>105.5s</td>
+            <td>29.7%</td>
+            <td>105.7s</td>
           </tr>
           <tr>
             <td><strong>MPLM (ours)</strong></td>
-            <td class="best">38.4%</td>
-            <td class="best">61.8s</td>
+            <td class="best">37.8%</td>
+            <td class="best">61.3s</td>
           </tr>
           <tr>
             <td rowspan="2"><strong>Qwen3.6-35B-A3B</strong></td>
