@@ -319,26 +319,28 @@
     .more-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 1.25rem;
-      margin: 1.5rem 0 0;
+      gap: 0.9rem;
+      margin: 1.25rem 0 0;
     }
     @media (max-width: 768px) { .more-grid { grid-template-columns: 1fr; } }
     .more-card {
       display: block;
       background: #fff;
       border: 1px solid var(--border-light);
-      border-left: 4px solid var(--primary);
-      border-radius: 8px;
-      padding: 1.25rem 1.5rem;
+      border-left: 3px solid var(--primary);
+      border-radius: 6px;
+      padding: 0.7rem 0.9rem;
       text-decoration: none;
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.9rem;
+      line-height: 1.35;
       transition: box-shadow 0.15s ease, transform 0.15s ease;
     }
     .more-card:hover {
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.07);
       transform: translateY(-2px);
     }
-    .more-card .more-title { color: var(--primary); font-weight: 600; margin-bottom: 0.3rem; }
-    .more-card .more-link { color: var(--text-muted); font-size: 0.85rem; }
   </style>
 </head>
 <body>
@@ -803,12 +805,10 @@
     </p>
     <div class="more-grid">
       <a class="more-card external-link" href="https://zanette-labs.github.io/MaxRL/">
-        <div class="more-title">Maximum Likelihood Reinforcement Learning</div>
-        <div class="more-link">zanette-labs.github.io/MaxRL</div>
+        Maximum Likelihood Reinforcement Learning
       </a>
       <a class="more-card external-link" href="https://rl-textfeedback.github.io">
-        <div class="more-title">Expanding the Capabilities of Reinforcement Learning via Text Feedback</div>
-        <div class="more-link">rl-textfeedback.github.io</div>
+        Expanding the Capabilities of Reinforcement Learning via Text Feedback
       </a>
     </div>
   </div>
