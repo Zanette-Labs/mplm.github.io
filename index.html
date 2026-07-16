@@ -314,6 +314,31 @@
 
     table.comparison-table td.best { color: var(--primary); font-weight: 700; }
     .source-tag { font-size: 0.8rem; color: var(--text-muted); }
+
+    /* More work from the lab */
+    .more-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+      margin: 1.5rem 0 0;
+    }
+    @media (max-width: 768px) { .more-grid { grid-template-columns: 1fr; } }
+    .more-card {
+      display: block;
+      background: #fff;
+      border: 1px solid var(--border-light);
+      border-left: 4px solid var(--primary);
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      text-decoration: none;
+      transition: box-shadow 0.15s ease, transform 0.15s ease;
+    }
+    .more-card:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transform: translateY(-2px);
+    }
+    .more-card .more-title { color: var(--primary); font-weight: 600; margin-bottom: 0.3rem; }
+    .more-card .more-link { color: var(--text-muted); font-size: 0.85rem; }
   </style>
 </head>
 <body>
@@ -765,6 +790,26 @@
   journal={arXiv preprint},
   year={2026}
 }</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== MORE FROM THE LAB ==================== -->
+<section class="section section-white">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3 section-title" style="color:#C41230 !important;">More from the Lab</h2>
+    <p>
+      If you're interested in more work from the lab, check out these papers:
+    </p>
+    <div class="more-grid">
+      <a class="more-card external-link" href="https://zanette-labs.github.io/MaxRL/">
+        <div class="more-title">Maximum Likelihood Reinforcement Learning</div>
+        <div class="more-link">zanette-labs.github.io/MaxRL</div>
+      </a>
+      <a class="more-card external-link" href="https://rl-textfeedback.github.io">
+        <div class="more-title">Expanding the Capabilities of Reinforcement Learning via Text Feedback</div>
+        <div class="more-link">rl-textfeedback.github.io</div>
+      </a>
     </div>
   </div>
 </section>
