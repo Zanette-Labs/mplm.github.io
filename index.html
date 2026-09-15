@@ -49,6 +49,26 @@
     .hero .publication-authors a:hover { color: #C41230 !important; text-decoration: underline; }
     .hero .publication-authors span { color: #4b5563; }
 
+    /* Venue badge: COLM 2026 · Oral Spotlight */
+    .venue-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.9rem;
+      padding: 0.4rem 1rem;
+      border: 1px solid #C41230;
+      border-radius: 999px;
+      color: #C41230;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      line-height: 1;
+      text-decoration: none;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+    .venue-badge:hover { background: #C41230; color: #fff; }
+    .venue-badge .dot { opacity: 0.5; }
+
     .publication-links .button {
       margin: 0.25rem;
       background: transparent;
@@ -365,6 +385,12 @@
               <br><span class="source-tag"><sup>*</sup>Equal contribution.</span>
             </div>
 
+            <div>
+              <a class="venue-badge" href="https://colmweb.org/" target="_blank" rel="noopener" title="Conference on Language Modeling 2026">
+                <span>COLM 2026</span><span class="dot">&middot;</span><span>Oral Spotlight</span>
+              </a>
+            </div>
+
             <div class="column has-text-centered" style="margin-top: 0.1rem;">
               <div class="publication-links">
                 <span class="link-block">
@@ -545,24 +571,11 @@
       <p>
         We assign one worker to each cell ($N^4$ workers for an $N^2\times N^2$ grid). A worker that finds a unique value
         <em>sends</em> it only to its <strong>neighbors</strong> (cells sharing a row, column, or sub-grid) and stops; otherwise it
-        waits to <em>receive</em> more information. This sparse, local communication is exactly the structure that makes MPLMs
+        waits to <em>receive</em> more information. A worker communicates with only <strong>3N<sup>2</sup>−2N−1</strong> of the
+<strong>N<sup>4</sup>−1</strong> other workers,
+        just <strong>64</strong>$\boldsymbol/$<strong>624</strong> for $25\times 25$ Sudoku. This sparse, local communication is exactly the structure that makes MPLMs
         context-efficient.
       </p>
-
-      <div class="stat-grid">
-        <div class="stat-card">
-          <div class="stat-number">25&times;25</div>
-          <div class="stat-label">Largest grid MPLM solves &mdash; out of reach for Serial &amp; FJ</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number">72%</div>
-          <div class="stat-label">MPLM accuracy on 25&times;25, trained on just 1000 puzzles</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number">30&times;</div>
-          <div class="stat-label">Smaller peak context than serial CoT &amp; FJ</div>
-        </div>
-      </div>
 
       <div class="figure-container">
         <center>
@@ -571,6 +584,11 @@
         <p class="figure-caption">
           The worker for the green cell only communicates with its blue neighbors &mdash; not the whole grid.
         </p>
+      </div>
+
+      <div class="insight-box has-text-centered" style="background:transparent; color:var(--primary); font-size:1.25rem;">
+        A fine-tuned <strong style="color:inherit;">0.6B</strong> MPLM solves <strong style="color:inherit;">72%</strong> of 25&times;25 puzzles;
+        <strong style="color:inherit;">GPT-5 Pro</strong> without tools solves <strong style="color:inherit;">20%</strong>.
       </div>
 
       <table class="comparison-table" style="text-align:center; margin:1.5rem auto;">
@@ -637,7 +655,7 @@
 
       <p>
         The improved scaling translates into qualitatively new capability. DeepSeek-R1 already fails on standard
-        $9\times 9$ puzzles, and <strong>GPT-5 Pro</strong> (no tools) solves only $1/10$ of $25\times 25$ puzzles &mdash; whereas a
+        $9\times 9$ puzzles, and <strong>GPT-5 Pro</strong> (no tools) solves only <strong>20%</strong> of $25\times 25$ puzzles &mdash; whereas a
         tiny fine-tuned MPLM solves <strong>72%</strong>. This is not a head-to-head comparison, but an illustration of what
         structured parallelism can unlock that monolithic CoT cannot, regardless of scale.
       </p>
